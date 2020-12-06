@@ -62,14 +62,44 @@ var questionList = [
   },
 
   {
-    question: "has no shortage of confidence, and he's certain that all women want him. With his big hair and tight black clothes, he's known for his karate chops, accompanied by the sound of a bullwhip. ? ",
+    question: "has no shortage of confidence, and he's certain that all women want him. With his big hair and tight black clothes, he's known for his karate chops, accompanied by the sound of a bullwhip ? ",
     options: ["jonny-bravo", "jinne-john", "billy-nandy"],
-    correctAnswer: "jonny bravo"
+    correctAnswer: "jonny-bravo"
   }
  
 ];
 
-var highScore = 3;
+var questionListLevel_1 = [
+  {
+    question: "Is Dee Dee younger or older than Dexter in Dexters Laboratory ?",
+    options: ["younger", "older", "same age"],
+    correctAnswer: "older"
+  },
+  {
+    question: "What are the names of Patrick's parents on Spongebob? ",
+    options: ["Janet and marty", "susan and roy", "Herb and Margie"],
+    correctAnswer: "Herb and Margie"
+  },
+    {
+    question: "Which of these people IS a fairy on Winx Club? ",
+    options: ["Daisy", "tecna", "Luz"],
+    correctAnswer: "tecna"
+  },
+    {
+    question: "Emmy and Max discovered a magical place called Dragon Land were related to each other as? ",
+    options: ["siblings", "friends", "cousin"],
+    correctAnswer: "siblings"
+  },
+    {
+    question: "conjoined brothers of different species, with one half of the resultant animal being a______and the other a ____? ",
+    options: ["cat and mouse", "dog and cat", "tiger and lion"],
+    correctAnswer: "cat and mouse"
+  }
+    
+ 
+];
+
+var highScore = 4;
 var score =0;
 var highestScorer ="Anamika";
 
@@ -99,6 +129,7 @@ function questionAndAnswer(answer, correctAnswer) {
 /**
  * Processing the storage value to display
  */
+function displayQuestions(questionList){
 
 for (var i = 0; i <= questionList.length - 1; i++) {
   var currentOption = questionList[i].options
@@ -116,7 +147,9 @@ for (var i = 0; i <= questionList.length - 1; i++) {
   }
  
   questionAndAnswer(userAnswer, questionList[i].correctAnswer);
+  }
 }
+displayQuestions(questionList);
 
 /**
  * To evaluate the final result
@@ -125,11 +158,22 @@ for (var i = 0; i <= questionList.length - 1; i++) {
 console.log(chalk.black.bold.bgHex('9c27b0')('your final score is '+score));
 if(highScore<score){
   console.log(("You are the new high scorer "+ score));
+  console.log(chalk.bold.green("Congratulation you just leveled up!!"));
+  // To move to next level
+  if (readLineSync.keyInYN('Do you want to continue to next level?')) {
+    displayQuestions(questionListLevel_1);
+
+} 
 }
+
 else{
   console.log(chalk.black.bold.bgHex('#ff1744')("You couldn't beat the highest score "+ highScore +" by "+highestScorer ));
   console.log('\n');
 }
+
+console.log(("your final score is " +score));
 console.log("The END Bye Bye "+ chalk.black.bold.bgHex('#ffffff')("^_^"));
+
+
 
 
